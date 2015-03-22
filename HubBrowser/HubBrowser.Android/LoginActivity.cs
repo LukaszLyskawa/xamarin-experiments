@@ -21,11 +21,14 @@ namespace HubBrowser.Android
 
             var button = FindViewById<Button>(Resource.Id.signIn);
 
-            button.Click += (s, e) => ViewModel.SignIn(userName.Text, password.Text);
+            button.Click += async (s, e) => await ViewModel.SignIn();
 
             EventHandler<TextChangedEventArgs> toggleSignIn = (s, e) =>
             {
-                button.Enabled = ViewModel.CanSignIn(userName.Text, password.Text);
+                ViewModel.Username = userName.Text;
+                ViewModel.Password = password.Text;
+
+                button.Enabled = ViewModel.CanSignIn;
             };
 
             userName.TextChanged += toggleSignIn;

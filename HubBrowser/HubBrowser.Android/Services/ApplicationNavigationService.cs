@@ -13,11 +13,16 @@ namespace HubBrowser.Android.Services
             this.application = application;
         }
 
-        public void NavigateToActivity<T>()
+        private void NavigateToActivity<T>()
         {
             var intent = new Intent(application, typeof (T));
 
             application.StartActivity(intent);
+        }
+
+        public void ToRepositoryList()
+        {
+            NavigateToActivity<RepositoryListActivity>();
         }
     }
 }

@@ -3,38 +3,55 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using HubBrowser.Core.Services;
 using Octokit;
+using PropertyChanged;
 
 namespace HubBrowser.Core.ViewModels
 {
     public class LoginViewModel : Screen
     {
         private readonly IGitHubClient gitHubClient;
-        private readonly INavigationService navigationService;
+        private readonly INavigationService navigate;
 
-        public LoginViewModel(IGitHubClient gitHubClient, INavigationService navigationService)
+        public LoginViewModel(IGitHubClient gitHubClient, INavigationService navigate)
         {
             this.gitHubClient = gitHubClient;
-            this.navigationService = navigationService;
+            this.navigate = navigate;
         }
 
-        public bool CanSignIn(string username, string password)
+        public string Username
         {
-            return !String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password);
+            get; set;
         }
 
-        public async Task SignIn(string username, string password)
+        public string Password
         {
-            gitHubClient.Connection.Credentials = new Credentials(username, password);
+            get; set;
+        }
+
+        public string Feedback
+        {
+            get; set;
+        }
+
+        [DependsOn("Username", "Password")]
+        public bool CanSignIn
+        {
+            get { return !String.IsNullOrEmpty(Username) && !String.IsNullOrEmpty(Password); }
+        }
+
+        public async Task SignIn()
+        {
+            gitHubClient.Connection.Credentials = new Credentials(Username, Password);
 
             try
             {
                 await gitHubClient.User.Current();
 
-                //navigationService.NavigateToActivity<R>();
+                navigate.ToRepositoryList();
             }
             catch (AuthorizationException)
             {
-                return;
+                Feedback = "Invalid credentials";
             }
         }
     }
