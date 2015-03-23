@@ -60,6 +60,9 @@ namespace HubBrowser.Android
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f060003
+			public const int feedback = 2131099651;
+			
 			// aapt resource value: 0x7f060001
 			public const int password = 2131099649;
 			

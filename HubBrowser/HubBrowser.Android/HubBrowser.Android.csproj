@@ -68,7 +68,7 @@
     <Compile Include="ActivityBase.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="LoginActivity.cs" />
-    <Compile Include="RepositoryDetailsActivity.cs" />
+    <Compile Include="RepositoryListActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApplicationNavigationService.cs" />

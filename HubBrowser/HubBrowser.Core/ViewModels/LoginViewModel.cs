@@ -10,9 +10,9 @@ namespace HubBrowser.Core.ViewModels
     public class LoginViewModel : Screen
     {
         private readonly IGitHubClient gitHubClient;
-        private readonly INavigationService navigate;
+        private readonly IApplicationNavigationService navigate;
 
-        public LoginViewModel(IGitHubClient gitHubClient, INavigationService navigate)
+        public LoginViewModel(IGitHubClient gitHubClient, IApplicationNavigationService navigate)
         {
             this.gitHubClient = gitHubClient;
             this.navigate = navigate;
@@ -23,9 +23,19 @@ namespace HubBrowser.Core.ViewModels
             get; set;
         }
 
+        public void OnUsernameChanged()
+        {
+            Feedback = String.Empty;
+        }
+
         public string Password
         {
             get; set;
+        }
+
+        public void OnPasswordChanged()
+        {
+            Feedback = String.Empty;
         }
 
         public string Feedback
@@ -41,18 +51,20 @@ namespace HubBrowser.Core.ViewModels
 
         public async Task SignIn()
         {
-            gitHubClient.Connection.Credentials = new Credentials(Username, Password);
+            navigate.ToRepositoryList();
 
-            try
-            {
-                await gitHubClient.User.Current();
+            //gitHubClient.Connection.Credentials = new Credentials(Username, Password);
 
-                navigate.ToRepositoryList();
-            }
-            catch (AuthorizationException)
-            {
-                Feedback = "Invalid credentials";
-            }
+            //try
+            //{
+            //    await gitHubClient.User.Current();
+
+            //    navigate.ToRepositoryList();
+            //}
+            //catch (AuthorizationException)
+            //{
+            //    Feedback = "Invalid credentials";
+            //}
         }
     }
 }

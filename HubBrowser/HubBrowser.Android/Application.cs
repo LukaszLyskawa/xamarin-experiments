@@ -34,7 +34,7 @@ namespace HubBrowser.Android
 
             container
                 .Instance<IGitHubClient>(new GitHubClient(new ProductHeaderValue("Hub.Browser.Android", "1.0.0")))
-                .Instance<INavigationService>(new ApplicationNavigationService(this));
+                .Instance<IApplicationNavigationService>(new ApplicationNavigationService(this));
 
             container
                 .PerRequest<LoginViewModel>();

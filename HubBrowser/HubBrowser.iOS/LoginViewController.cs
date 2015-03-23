@@ -1,4 +1,5 @@
 using System;
+using HubBrowser.Core.Extensions;
 using HubBrowser.Core.ViewModels;
 
 namespace HubBrowser.iOS
@@ -27,6 +28,8 @@ namespace HubBrowser.iOS
 
             Username.EditingChanged += toggleSignIn;
             Password.EditingChanged += toggleSignIn;
+
+            ViewModel.OnChanged(v => v.Feedback, () => Feedback.Text = ViewModel.Feedback);
 	    }
 	}
 }

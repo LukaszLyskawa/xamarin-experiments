@@ -3,6 +3,7 @@ using Android.App;
 using Android.OS;
 using Android.Text;
 using Android.Widget;
+using HubBrowser.Core.Extensions;
 using HubBrowser.Core.ViewModels;
 
 namespace HubBrowser.Android
@@ -21,6 +22,8 @@ namespace HubBrowser.Android
 
             var button = FindViewById<Button>(Resource.Id.signIn);
 
+            var feedback = FindViewById<TextView>(Resource.Id.feedback);
+
             button.Click += async (s, e) => await ViewModel.SignIn();
 
             EventHandler<TextChangedEventArgs> toggleSignIn = (s, e) =>
@@ -33,6 +36,8 @@ namespace HubBrowser.Android
 
             userName.TextChanged += toggleSignIn;
             password.TextChanged += toggleSignIn;
+
+            ViewModel.OnChanged(v => v.Feedback, () => feedback.Text = ViewModel.Feedback);
         }
     }
 }

@@ -16,6 +16,10 @@ namespace HubBrowser.iOS
 	{
 		[Outlet]
 		[GeneratedCode ("iOS Designer", "1.0")]
+		UITextView Feedback { get; set; }
+
+		[Outlet]
+		[GeneratedCode ("iOS Designer", "1.0")]
 		UITextField Password { get; set; }
 
 		[Outlet]
@@ -28,6 +32,10 @@ namespace HubBrowser.iOS
 
 		void ReleaseDesignerOutlets ()
 		{
+			if (Feedback != null) {
+				Feedback.Dispose ();
+				Feedback = null;
+			}
 			if (Password != null) {
 				Password.Dispose ();
 				Password = null;

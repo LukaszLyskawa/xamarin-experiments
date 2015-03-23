@@ -2,7 +2,7 @@ using System;
 
 namespace HubBrowser.Core.Services
 {
-    public interface INavigationService
+    public interface IApplicationNavigationService
     {
         void ToRepositoryList();
     }

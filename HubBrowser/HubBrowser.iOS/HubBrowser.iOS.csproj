@@ -90,11 +90,18 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="RepositoryListController.cs" />
+    <Compile Include="RepositoryListController.designer.cs">
+      <DependentUpon>RepositoryListController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Services\ApplicationNavigationService.cs" />
     <Compile Include="UIViewControllerBase.cs" />
     <None Include="app.config" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <InterfaceDefinition Include="LoginViewController.storyboard" />
+    <InterfaceDefinition Include="LoginViewController.storyboard">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
